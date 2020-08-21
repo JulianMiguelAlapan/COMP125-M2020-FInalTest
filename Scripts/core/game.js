@@ -3,7 +3,7 @@
 Name: COMP125-M2020-FInalTest
 Author: Julian Miguel Alapan
 Student#: 300836721
-WebsiteName:
+WebsiteName: COMP125 - M2020 - Final Test
 Description: Dice Roller
 */
 let Game = (function () {
@@ -115,6 +115,7 @@ let Game = (function () {
         return diceRoll;
     }
     function buildInterface() {
+        // Background
         diceBackground = new Core.GameObject("background", Config.Game.CENTER_X, Config.Game.CENTER_Y, true);
         stage.addChild(diceBackground);
         // Labels
@@ -137,10 +138,14 @@ let Game = (function () {
         rollButton.on("click", () => {
             console.log("roll button clicked");
             let dices = Dices();
+            // Update leftDice image
             leftDice.image = assets.getResult(dices[0]);
+            // Update leftDiceLabel text
             leftDiceLabel.setText(dices[0]);
             console.log("Left dice rolled: " + dices[0]);
+            // Update leftDice image
             rightDice.image = assets.getResult(dices[1]);
+            // Update leftDiceLabel text
             rightDiceLabel.setText(dices[1]);
             console.log("Right dice rolled: " + dices[1]);
         });
