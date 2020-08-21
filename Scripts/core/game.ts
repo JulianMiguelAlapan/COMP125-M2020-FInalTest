@@ -16,6 +16,8 @@ let Game = (function(){
     let diceBackground: Core.GameObject;
 
     let exampleLabel: UIObjects.Label;
+    let leftDiceLabel: UIObjects.Label;
+    let rightDiceLabel: UIObjects.Label;
     
     let rollButton: UIObjects.Button;
     let leftDice: Core.GameObject;
@@ -128,17 +130,35 @@ let Game = (function(){
         diceBackground = new Core.GameObject("background", Config.Game.CENTER_X, Config.Game.CENTER_Y, true);
         stage.addChild(diceBackground);
 
-        exampleLabel = new UIObjects.Label("An Example", "40px", "Consolas", "#000000", Config.Game.CENTER_X, Config.Game.CENTER_Y, true);
+        exampleLabel = new UIObjects.Label("An Example", "40px", "Consolas", "#000000", Config.Game.CENTER_X, Config.Game.CENTER_Y + 100, true);
         stage.addChild(exampleLabel);
 
-        rollButton = new UIObjects.Button("rollButton", Config.Game.CENTER_X, Config.Game.CENTER_Y + 100, true);
+        leftDiceLabel = new UIObjects.Label("leftDice", "16px", "Consolas", "#000000", Config.Game.CENTER_X - 150, Config.Game.CENTER_Y + 60, true);
+        stage.addChild(leftDiceLabel);
+
+        rightDiceLabel = new UIObjects.Label("rightDice", "16px", "Consolas", "#000000", Config.Game.CENTER_X + 150, Config.Game.CENTER_Y + 60, true);
+        stage.addChild(rightDiceLabel);
+
+        rollButton = new UIObjects.Button("rollButton", Config.Game.CENTER_X, Config.Game.CENTER_Y + 150, true);
         stage.addChild(rollButton);
+
+        // Dice GameObjects
+        leftDice = new Core.GameObject("blank", Config.Game.CENTER_X - 150, Config.Game.CENTER_Y - 50, true);
+        stage.addChild(leftDice);
+
+        rightDice = new Core.GameObject("blank", Config.Game.CENTER_X + 150, Config.Game.CENTER_Y - 50, true);
+        stage.addChild(rightDice);
     }
 
     function interfaceLogic():void
     {
         rollButton.on("click", ()=>{
             console.log("roll button clicked");
+
+            let dices = Dices();
+
+            leftDice.image = assets.getResult(dices[0]) as HTMLImageElement;
+            rightDice.image = assets.getResult(dices[1]) as HTMLImageElement;
         });
     }
 
