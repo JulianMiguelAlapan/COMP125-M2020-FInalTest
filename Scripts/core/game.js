@@ -4,7 +4,7 @@ Name: COMP125-M2020-FInalTest
 Author: Julian Miguel Alapan
 Student#: 300836721
 WebsiteName:
-Description: Dice
+Description: Dice Roller
 */
 let Game = (function () {
     // variable declarations
@@ -83,29 +83,29 @@ let Game = (function () {
         let diceRoll = [" ", " "];
         let outCome = [0, 0];
         for (let roll = 0; roll < 2; roll++) {
-            outCome[roll] = Util.Mathf.RandomRange(0, 60);
+            outCome[roll] = Math.floor((Math.random() * 6) + 1);
             switch (outCome[roll]) {
-                case checkRange(outCome[roll], 0, 10):
+                case checkRange(outCome[roll], 1, 1):
                     diceRoll[roll] = "1";
                     one++;
                     break;
-                case checkRange(outCome[roll], 11, 20):
+                case checkRange(outCome[roll], 2, 2):
                     diceRoll[roll] = "2";
                     two++;
                     break;
-                case checkRange(outCome[roll], 21, 30):
+                case checkRange(outCome[roll], 3, 3):
                     diceRoll[roll] = "3";
                     three++;
                     break;
-                case checkRange(outCome[roll], 31, 40):
+                case checkRange(outCome[roll], 4, 4):
                     diceRoll[roll] = "4";
                     one++;
                     four;
-                case checkRange(outCome[roll], 41, 50):
+                case checkRange(outCome[roll], 5, 5):
                     diceRoll[roll] = "5";
                     five++;
                     break;
-                case checkRange(outCome[roll], 51, 60):
+                case checkRange(outCome[roll], 6, 6):
                     diceRoll[roll] = "6";
                     six++;
                     break;
@@ -116,9 +116,9 @@ let Game = (function () {
     function buildInterface() {
         diceBackground = new Core.GameObject("background", Config.Game.CENTER_X, Config.Game.CENTER_Y, true);
         stage.addChild(diceBackground);
-        leftDiceLabel = new UIObjects.Label(" ", "16px", "Consolas", "#000000", Config.Game.CENTER_X - 150, Config.Game.CENTER_Y + 60, true);
+        leftDiceLabel = new UIObjects.Label(" ", "18px", "Consolas", "#000000", Config.Game.CENTER_X - 150, Config.Game.CENTER_Y + 60, true);
         stage.addChild(leftDiceLabel);
-        rightDiceLabel = new UIObjects.Label(" ", "16px", "Consolas", "#000000", Config.Game.CENTER_X + 150, Config.Game.CENTER_Y + 60, true);
+        rightDiceLabel = new UIObjects.Label(" ", "18px", "Consolas", "#000000", Config.Game.CENTER_X + 150, Config.Game.CENTER_Y + 60, true);
         stage.addChild(rightDiceLabel);
         rollButton = new UIObjects.Button("rollButton", Config.Game.CENTER_X, Config.Game.CENTER_Y + 150, true);
         stage.addChild(rollButton);
@@ -133,7 +133,9 @@ let Game = (function () {
             console.log("roll button clicked");
             let dices = Dices();
             leftDice.image = assets.getResult(dices[0]);
+            leftDiceLabel.setText(dices[0]);
             rightDice.image = assets.getResult(dices[1]);
+            rightDiceLabel.setText(dices[1]);
         });
     }
     /**
