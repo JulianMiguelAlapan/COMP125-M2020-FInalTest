@@ -1,3 +1,10 @@
+/*
+Name: COMP125-M2020-FInalTest
+Author: Julian Miguel Alapan
+Student#: 300836721
+WebsiteName:
+Description: Dice
+*/
 let Game = (function(){
 
     // variable declarations
@@ -77,6 +84,43 @@ let Game = (function(){
     function Update():void
     {
         stage.update();
+    }
+
+    /* When this function is called it determines the diceRoll results.*/
+    function Dices():string[] {
+        let diceRoll = [" ", " "];
+        let outCome = [0, 0];
+
+        for (let roll = 0; roll < 2; roll++) {
+            outCome[roll] = Util.Mathf.RandomRange(1,6);
+            switch (outCome[roll]) {
+                case Util.Mathf.Clamp(outCome[roll],1,1):
+                    diceRoll[roll] = "one";
+                    one++;
+                    break;
+                case Util.Mathf.Clamp(outCome[roll],2,2):
+                    diceRoll[roll] = "two";
+                    two++;
+                    break;
+                case Util.Mathf.Clamp(outCome[roll],3,3):
+                    diceRoll[roll] = "three";
+                    three++;
+                    break;
+                case Util.Mathf.Clamp(outCome[roll],4,4):
+                    diceRoll[roll] = "four";
+                    one++;
+                    four;
+                case Util.Mathf.Clamp(outCome[roll],5,5):
+                    diceRoll[roll] = "five";
+                    five++;
+                    break;
+                case Util.Mathf.Clamp(outCome[roll],6,6):
+                    diceRoll[roll] = "six";
+                    six++;
+                    break;
+            }
+        }
+        return diceRoll;
     }
 
     function buildInterface():void
