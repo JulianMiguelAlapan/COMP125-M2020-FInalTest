@@ -15,6 +15,7 @@ let Game = (function () {
     let leftDiceLabel;
     let rightDiceLabel;
     let rollButton;
+    let resetButton;
     let leftDice;
     let rightDice;
     // Symbol Tallies
@@ -116,12 +117,16 @@ let Game = (function () {
     function buildInterface() {
         diceBackground = new Core.GameObject("background", Config.Game.CENTER_X, Config.Game.CENTER_Y, true);
         stage.addChild(diceBackground);
+        // Labels
         leftDiceLabel = new UIObjects.Label(" ", "18px", "Consolas", "#000000", Config.Game.CENTER_X - 150, Config.Game.CENTER_Y + 60, true);
         stage.addChild(leftDiceLabel);
         rightDiceLabel = new UIObjects.Label(" ", "18px", "Consolas", "#000000", Config.Game.CENTER_X + 150, Config.Game.CENTER_Y + 60, true);
         stage.addChild(rightDiceLabel);
+        // Buttons
         rollButton = new UIObjects.Button("rollButton", Config.Game.CENTER_X, Config.Game.CENTER_Y + 150, true);
         stage.addChild(rollButton);
+        resetButton = new UIObjects.Button("resetButton", Config.Game.CENTER_X + 200, Config.Game.CENTER_Y + 150, true);
+        stage.addChild(resetButton);
         // Dice GameObjects
         leftDice = new Core.GameObject("1", Config.Game.CENTER_X - 150, Config.Game.CENTER_Y - 50, true);
         stage.addChild(leftDice);
@@ -134,8 +139,17 @@ let Game = (function () {
             let dices = Dices();
             leftDice.image = assets.getResult(dices[0]);
             leftDiceLabel.setText(dices[0]);
+            console.log("Left dice rolled: " + dices[0]);
             rightDice.image = assets.getResult(dices[1]);
             rightDiceLabel.setText(dices[1]);
+            console.log("Right dice rolled: " + dices[1]);
+        });
+        resetButton.on("click", () => {
+            console.log("reset button clicked");
+            leftDice.image = assets.getResult("blank");
+            leftDiceLabel.setText(" ");
+            rightDice.image = assets.getResult("blank");
+            rightDiceLabel.setText(" ");
         });
     }
     /**
