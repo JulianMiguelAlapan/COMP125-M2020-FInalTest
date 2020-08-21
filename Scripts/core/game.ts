@@ -13,14 +13,18 @@ let Game = (function(){
     
     let assets: createjs.LoadQueue;
 
+    // Background
     let diceBackground: Core.GameObject;
 
+    // Dice Labels
     let leftDiceLabel: UIObjects.Label;
     let rightDiceLabel: UIObjects.Label;
     
+    // Buttons
     let rollButton: UIObjects.Button;
     let resetButton: UIObjects.Button;
 
+    // Dices
     let leftDice: Core.GameObject;
     let rightDice: Core.GameObject;
 

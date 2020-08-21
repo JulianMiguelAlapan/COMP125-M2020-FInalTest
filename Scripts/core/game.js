@@ -11,11 +11,15 @@ let Game = (function () {
     let canvas = document.getElementsByTagName('canvas')[0];
     let stage;
     let assets;
+    // Background
     let diceBackground;
+    // Dice Labels
     let leftDiceLabel;
     let rightDiceLabel;
+    // Buttons
     let rollButton;
     let resetButton;
+    // Dices
     let leftDice;
     let rightDice;
     // Symbol Tallies
