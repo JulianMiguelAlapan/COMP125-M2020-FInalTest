@@ -12,7 +12,6 @@ let Game = (function () {
     let stage;
     let assets;
     let diceBackground;
-    let exampleLabel;
     let leftDiceLabel;
     let rightDiceLabel;
     let rollButton;
@@ -70,35 +69,44 @@ let Game = (function () {
     function Update() {
         stage.update();
     }
+    /* Utility function to check if a value falls within a range of bounds */
+    function checkRange(value, lowerBounds, upperBounds) {
+        if (value >= lowerBounds && value <= upperBounds) {
+            return value;
+        }
+        else {
+            return !value;
+        }
+    }
     /* When this function is called it determines the diceRoll results.*/
     function Dices() {
         let diceRoll = [" ", " "];
         let outCome = [0, 0];
         for (let roll = 0; roll < 2; roll++) {
-            outCome[roll] = Util.Mathf.RandomRange(1, 6);
+            outCome[roll] = Util.Mathf.RandomRange(0, 60);
             switch (outCome[roll]) {
-                case Util.Mathf.Clamp(outCome[roll], 1, 1):
-                    diceRoll[roll] = "one";
+                case checkRange(outCome[roll], 0, 10):
+                    diceRoll[roll] = "1";
                     one++;
                     break;
-                case Util.Mathf.Clamp(outCome[roll], 2, 2):
-                    diceRoll[roll] = "two";
+                case checkRange(outCome[roll], 11, 20):
+                    diceRoll[roll] = "2";
                     two++;
                     break;
-                case Util.Mathf.Clamp(outCome[roll], 3, 3):
-                    diceRoll[roll] = "three";
+                case checkRange(outCome[roll], 21, 30):
+                    diceRoll[roll] = "3";
                     three++;
                     break;
-                case Util.Mathf.Clamp(outCome[roll], 4, 4):
-                    diceRoll[roll] = "four";
+                case checkRange(outCome[roll], 31, 40):
+                    diceRoll[roll] = "4";
                     one++;
                     four;
-                case Util.Mathf.Clamp(outCome[roll], 5, 5):
-                    diceRoll[roll] = "five";
+                case checkRange(outCome[roll], 41, 50):
+                    diceRoll[roll] = "5";
                     five++;
                     break;
-                case Util.Mathf.Clamp(outCome[roll], 6, 6):
-                    diceRoll[roll] = "six";
+                case checkRange(outCome[roll], 51, 60):
+                    diceRoll[roll] = "6";
                     six++;
                     break;
             }
@@ -108,18 +116,16 @@ let Game = (function () {
     function buildInterface() {
         diceBackground = new Core.GameObject("background", Config.Game.CENTER_X, Config.Game.CENTER_Y, true);
         stage.addChild(diceBackground);
-        exampleLabel = new UIObjects.Label("An Example", "40px", "Consolas", "#000000", Config.Game.CENTER_X, Config.Game.CENTER_Y + 100, true);
-        stage.addChild(exampleLabel);
-        leftDiceLabel = new UIObjects.Label("leftDice", "16px", "Consolas", "#000000", Config.Game.CENTER_X - 150, Config.Game.CENTER_Y + 60, true);
+        leftDiceLabel = new UIObjects.Label(" ", "16px", "Consolas", "#000000", Config.Game.CENTER_X - 150, Config.Game.CENTER_Y + 60, true);
         stage.addChild(leftDiceLabel);
-        rightDiceLabel = new UIObjects.Label("rightDice", "16px", "Consolas", "#000000", Config.Game.CENTER_X + 150, Config.Game.CENTER_Y + 60, true);
+        rightDiceLabel = new UIObjects.Label(" ", "16px", "Consolas", "#000000", Config.Game.CENTER_X + 150, Config.Game.CENTER_Y + 60, true);
         stage.addChild(rightDiceLabel);
         rollButton = new UIObjects.Button("rollButton", Config.Game.CENTER_X, Config.Game.CENTER_Y + 150, true);
         stage.addChild(rollButton);
         // Dice GameObjects
-        leftDice = new Core.GameObject("blank", Config.Game.CENTER_X - 150, Config.Game.CENTER_Y - 50, true);
+        leftDice = new Core.GameObject("1", Config.Game.CENTER_X - 150, Config.Game.CENTER_Y - 50, true);
         stage.addChild(leftDice);
-        rightDice = new Core.GameObject("blank", Config.Game.CENTER_X + 150, Config.Game.CENTER_Y - 50, true);
+        rightDice = new Core.GameObject("2", Config.Game.CENTER_X + 150, Config.Game.CENTER_Y - 50, true);
         stage.addChild(rightDice);
     }
     function interfaceLogic() {
