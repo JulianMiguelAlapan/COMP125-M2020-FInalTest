@@ -180,9 +180,9 @@ let Game = (function(){
             leftDiceLabel.setText(dices[0]);
             console.log("Left dice rolled: " + dices[0]);
 
-            // Update leftDice image
+            // Update rightDice image
             rightDice.image = assets.getResult(dices[1]) as HTMLImageElement;
-            // Update leftDiceLabel text
+            // Update rightDiceLabel text
             rightDiceLabel.setText(dices[1]);
             console.log("Right dice rolled: " + dices[1]);
         });
